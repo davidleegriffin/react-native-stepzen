@@ -16,3 +16,5 @@ npm start
 or 
 yarn start
 ```
+
+Download the expo App on your phone and scan the QR code or open it in your browser

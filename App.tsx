@@ -18,9 +18,9 @@ const client = new ApolloClient({
 	link: createHttpLink({
 		credentials: "same-origin",
 		headers: {
-			Authorization: `Apikey hollister::stepzen.io+1000::875b1570b6384bd94c44a73148270e29b50930ee16fd59387da2a0fc05b608a5`,
+			Authorization: `Apikey {add_key}`,
 		},
-		uri: "https://hollister.stepzen.net/api/native/__graphql",
+		uri: "{add_uri}",
 	}),
 	cache: new InMemoryCache(),
 });

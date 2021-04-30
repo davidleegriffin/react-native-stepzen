@@ -7,6 +7,7 @@ or
 yarn global add expo-cli
 ```
 
+Clone the repo
 ```
 git clone git@github.com:stepzen-samples/react-native-stepzen.git
 ```
@@ -25,6 +26,7 @@ const client = new ApolloClient({
 });
 ```
 
+Start up the development environment
 ```
 npm start
 or 

@@ -11,6 +11,20 @@ yarn global add expo-cli
 git clone git@github.com:stepzen-samples/react-native-stepzen.git
 ```
 
+Manually add your admin key and uri in the App.tsx. Still working on adding .env variables to the build and development environments
+```
+const client = new ApolloClient({
+	link: createHttpLink({
+		credentials: "same-origin",
+		headers: {
+			Authorization: `Apikey {add_key}`,
+		},
+		uri: "{add_uri}",
+	}),
+	cache: new InMemoryCache(),
+});
+```
+
 ```
 npm start
 or 

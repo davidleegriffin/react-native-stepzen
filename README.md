@@ -12,6 +12,13 @@ Clone the repo
 git clone git@github.com:stepzen-samples/react-native-stepzen.git
 ```
 
+Start up StepZen
+```
+$ cd stepzen
+$ stepzen start
+```
+
+
 Manually add your admin key and uri in the App.tsx. Still working on adding .env variables to the build and development environments
 ```
 const client = new ApolloClient({

@@ -11,6 +11,6 @@ web-build/
 .env
 config.yaml
 package-lock.json
-
+aws-exports.js
 # macOS
 .DS_Store

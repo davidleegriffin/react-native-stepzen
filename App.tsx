@@ -10,7 +10,11 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
+import AppNavigation from "./navigation";
+import config from './aws-exports';
+import Amplify from '@aws-amplify/core';
+
+Amplify.configure(config);
 
 const { EXPO_STEPZEN_API_KEY, EXPO_STEPZEN_URI } = process.env;
 
@@ -18,9 +22,9 @@ const client = new ApolloClient({
 	link: createHttpLink({
 		credentials: "same-origin",
 		headers: {
-			Authorization: `Apikey {add_key}`,
+			Authorization: `Apikey {headyflamingomouth::stepzen.net+1000::d603591e9b22ec93bbf3f204f018c484d285b3e4a26cb956a442d3a249d45414}`,
 		},
-		uri: "{add_uri}",
+		uri: "{https://HeadyFlamingoMouth.stepzen.net/api/native/__graphql}",
 	}),
 	cache: new InMemoryCache(),
 });
@@ -35,7 +39,7 @@ export default function App() {
 		return (
 			<ApolloProvider client={client}>
 				<SafeAreaProvider>
-					<Navigation colorScheme={colorScheme} />
+					<AppNavigation />
 					<StatusBar />
 				</SafeAreaProvider>
 			</ApolloProvider>

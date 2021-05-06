@@ -11,7 +11,7 @@ export default function TabOneScreen() {
 	console.log("data", data);
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Tab One Hot</Text>
+			<Text style={styles.title}>Tab One Hot dave</Text>
 			<View
 				style={styles.separator}
 				lightColor="#eee"

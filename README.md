@@ -51,4 +51,33 @@ or
 expo start --tunnel
 ```
 
+We decided to use AWS Cognito for our signUp/signIn Authorization. There are many tutorials onliine on how to use Cognito with React-Native, we mostly used this one for our guidance:
+
+https://www.youtube.com/watch?v=s2_j_L0aJ_I&t=477s
+
+Where he walks you through the signup and provisioning of AWS Cognito, creation of aws-exports.js file, and how to tie it into App.tsx/App.js.
+
+Create aws-exports.js in root folder and configure for your particular AWS User Pool:
+```
+const config = {
+    identityPoolId: '',
+    region: '',
+    userPoolId: '',
+    userPoolWebClientId: ''
+}
+export default config;
+```
+The youTube video abaove has an excellent walk-through of how to populate your aws-exports.js file and where on AWS to find the info to populate it with.
+
+Add to App.tsx/App.js near the top:
+```
+import AppNavigation from "./navigation";
+import config from './aws-exports';
+import Amplify from '@aws-amplify/core';
+
+Amplify.configure(config);
+```
+
+
+
 Download the expo App on your phone and scan the QR code or open it in your browser

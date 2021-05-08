@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import Auth from '@aws-amplify/auth';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -12,6 +12,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 100,
   },
+  image: {
+    flex: 1,
+    position:'absolute',
+    top: -200,
+  },
+  header: {
+    height: 50,
+    flex: 1,
+  }
 });
 
 function ForgetPassword({ navigation }) {
@@ -55,6 +64,12 @@ function ForgetPassword({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Sign-In Please</Text>
+      <Image
+        style={styles.image}
+        source={require('../../assets/bridge.jpeg')}
+      >
+      </Image>
       <Input
         value={email}
         placeholder="email@example.com"

@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    margin: 10,
+    margin: -50,
     textTransform: 'uppercase',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 350,
     fontWeight: '800',
     color: 'white',
     textShadowColor: 'rgba(0, 0, 0, 0.95)',
@@ -44,7 +44,7 @@ const Welcome = ({ navigation }) => (
         <Text
           style={styles.title}
         >
-          React Native Authentication using AWS Cogntio & Amplify
+          Galactic Twitterverse
         </Text>
         <View>
           <Button onPress={() => navigation.navigate('SignIn')}>

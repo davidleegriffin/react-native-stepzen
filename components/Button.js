@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
-
+    
   },
   textStyle: {
     fontSize: 18,

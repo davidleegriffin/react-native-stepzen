@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, Alert, Text,
+  View, StyleSheet, Alert, Text, Image
 } from 'react-native';
 import Auth from '@aws-amplify/auth';
 import Button from '../../components/Button';
@@ -11,11 +11,20 @@ import Input from '../../components/Input';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 100,
+    // justifyContent: 'flex-start',
+    // paddingTop: 100,
   },
+  image: {
+    flex: 1,
+    position:'absolute',
+    top: -200,
+  },
+  header: {
+    height: 50,
+    flex: 1,
+  }
 });
 
 export default function SignIn({ navigation, signIn: signInCb }) {
@@ -52,6 +61,12 @@ export default function SignIn({ navigation, signIn: signInCb }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Sign-In Please</Text>
+      <Image
+        style={styles.image}
+        source={require('../../assets/bridge.jpeg')}
+      >
+      </Image>
       <Input
         value={email}
         placeholder="email@example.com"

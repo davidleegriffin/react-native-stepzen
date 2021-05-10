@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
 import Button from '../components/Button';
 import { useQuery } from "@apollo/react-hooks"
 import { GET_IMAGES } from "../queries/content.queries.js"
+import IMAGE from '../assets/Starsinthesky.jpeg';
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -12,8 +13,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     // scrollEnabled: true,
   },
-  text: {
-    
+  bgImage: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    // objectFit: 'center',
   },
   image: {
     margin: 20,
@@ -37,7 +42,7 @@ if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
 
   return (
-    <View >
+    <ImageBackground source={IMAGE} style={styles.bgImage} blurRadius={0}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <Text style={styles.text}>pics</Text>
         <Image
@@ -63,6 +68,6 @@ if (error) return <Text>{error.message}</Text>
         </Image>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>
-    </View>
+    </ImageBackground>
   )
 }

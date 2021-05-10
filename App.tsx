@@ -22,9 +22,9 @@ const client = new ApolloClient({
 	link: createHttpLink({
 		credentials: "same-origin",
 		headers: {
-			Authorization: `Apikey {headyflamingomouth::stepzen.net+1000::d603591e9b22ec93bbf3f204f018c484d285b3e4a26cb956a442d3a249d45414}`,
+			Authorization: `Apikey headyflamingomouth::stepzen.net+1000::d603591e9b22ec93bbf3f204f018c484d285b3e4a26cb956a442d3a249d45414`,
 		},
-		uri: "{https://HeadyFlamingoMouth.stepzen.net/api/native/__graphql}",
+		uri: "https://HeadyFlamingoMouth.stepzen.net/api/native/__graphql",
 	}),
 	cache: new InMemoryCache(),
 });

@@ -38,7 +38,7 @@ export default function Home({ signOut }) {
 
 const pics = data?.cloudinaryImages
 pics?.map((pic) => {
-  console.log('datastuff', pic.url);
+  // console.log('datastuff', pic.url);
 });
 
 if (loading) return <Text>Almost there...</Text>
@@ -55,25 +55,3 @@ if (error) return <Text>{error.message}</Text>
 }
 
 
-{/* <Text style={styles.text}>pics</Text>
-<Image
-  style={styles.image}
-  source={{
-    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666779/Luke_f2bpxu.jpg',
-  }}
->
-</Image>
-<Image
-  style={styles.image}
-  source={{
-    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/C-3PO_sxnzpr.jpg',
-  }}
->
-</Image>
-<Image
-  style={styles.image}
-  source={{
-    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/leia_ovjyyv.jpg',
-  }}
->
-</Image> */}

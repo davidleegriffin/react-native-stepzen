@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
 import Button from '../components/Button';
+import Gallery from '../components/Gallery';
 import { useQuery } from "@apollo/react-hooks"
 import { GET_IMAGES } from "../queries/content.queries.js"
 import IMAGE from '../assets/Starsinthesky.jpeg';
@@ -35,8 +36,10 @@ export default function Home({ signOut }) {
     error
   } = useQuery(GET_IMAGES)
 
-const pics = data?.cloudinaryImages[0].publicId
-console.log('datastuff', data?.cloudinaryImages);
+const pics = data?.cloudinaryImages
+pics?.map((pic) => {
+  console.log('datastuff', pic.url);
+});
 
 if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
@@ -44,30 +47,33 @@ if (error) return <Text>{error.message}</Text>
   return (
     <ImageBackground source={IMAGE} style={styles.bgImage} blurRadius={0}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.text}>pics</Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666779/Luke_f2bpxu.jpg',
-          }}
-        >
-        </Image>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/C-3PO_sxnzpr.jpg',
-          }}
-        >
-        </Image>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/leia_ovjyyv.jpg',
-          }}
-        >
-        </Image>
+        <Gallery props={pics}/>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>
     </ImageBackground>
   )
 }
+
+
+{/* <Text style={styles.text}>pics</Text>
+<Image
+  style={styles.image}
+  source={{
+    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666779/Luke_f2bpxu.jpg',
+  }}
+>
+</Image>
+<Image
+  style={styles.image}
+  source={{
+    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/C-3PO_sxnzpr.jpg',
+  }}
+>
+</Image>
+<Image
+  style={styles.image}
+  source={{
+    uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/leia_ovjyyv.jpg',
+  }}
+>
+</Image> */}

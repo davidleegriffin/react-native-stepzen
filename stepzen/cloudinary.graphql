@@ -1,6 +1,7 @@
 
 
 type Image {
+	url: String!
 	assetId: ID!
 	publicId: ID
 	format: String
@@ -11,6 +12,7 @@ type Query {
 	cloudinaryImage(publicId: ID!): Image
 		@rest(
 			setters: [
+				{ field: "url", path: "resources[].secure_url" }
 				{ field: "assetId", path: "resources[].asset_id" }
 				{ field: "publicId", path: "resources[].public_id" }
 				{ field: "format", path: "resources[].format" }
@@ -23,6 +25,7 @@ type Query {
 	cloudinaryImages: [Image]
 		@rest(
 			setters: [
+				{ field: "url", path: "resources[].secure_url" }
 				{ field: "assetId", path: "resources[].asset_id" }
 				{ field: "publicId", path: "resources[].public_id" }
 				{ field: "format", path: "resources[].format" }

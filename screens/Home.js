@@ -36,7 +36,7 @@ export default function Home({ signOut }) {
   } = useQuery(GET_IMAGES)
 
 const pics = data?.cloudinaryImages[0].publicId
-console.log('data', data);
+console.log('datastuff', data?.cloudinaryImages);
 
 if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
@@ -62,7 +62,7 @@ if (error) return <Text>{error.message}</Text>
         <Image
           style={styles.image}
           source={{
-            uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/C-3PO_sxnzpr.jpg',
+            uri: 'https://res.cloudinary.com/davidleegriffin/image/upload/v1620666766/leia_ovjyyv.jpg',
           }}
         >
         </Image>

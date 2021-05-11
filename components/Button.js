@@ -1,10 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
+
+
 const styles = StyleSheet.create({
   buttonStyle: {
     padding: 10,
-    backgroundColor: '#2a6bcc',
+    backgroundColor: '#000',
     borderColor: 'white',
     borderRadius: 10,
     borderWidth: 1,

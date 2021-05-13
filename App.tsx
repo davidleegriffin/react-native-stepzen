@@ -14,6 +14,7 @@ import AppNavigation from "./navigation";
 import config from './aws-exports';
 import Amplify from '@aws-amplify/core';
 
+
 Amplify.configure(config);
 
 const { EXPO_STEPZEN_API_KEY, EXPO_STEPZEN_URI } = process.env;

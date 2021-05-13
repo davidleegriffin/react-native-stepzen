@@ -65,7 +65,7 @@ class AuthLoadingScreen extends React.Component {
     if (showLoadingSpinner) {
       view = (
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#aaa" />
+          <ActivityIndicator size="large" color="#000" />
         </View>
       );
     } else if (!userToken) {

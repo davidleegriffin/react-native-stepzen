@@ -7,7 +7,7 @@ const AppStack = createStackNavigator();
 export default function App({ signOut }) {
   return (
     <AppStack.Navigator>
-      <AppStack.Screen name="Home">
+      <AppStack.Screen name="Yavin">
         {() => <Home signOut={signOut} />}
       </AppStack.Screen>
     </AppStack.Navigator>

@@ -36,3 +36,27 @@ type Query {
 			configuration: "cloudinary_config"
 		)
 }
+
+type createImage {
+  image: String!
+  folder: String
+  assetId: ID!
+  publicId: ID
+  format: String
+  bytes: Float
+}
+type Mutation {
+  createImage(image: String!, folder: String!, publicId: String!): createImage
+    @rest(
+      setters: [
+        { field: "assetId", path: "asset_id" }
+        { field: "publicId", path: "public_id" }
+        { field: "format", path: "format" }
+        { field: "bytes", path: "bytes" }
+        { field: "image", path: "url" }
+      ]
+      resultroot: ""
+      endpoint: "https://us-central1-stepzen-web-staging.cloudfunctions.net/cloudinarySDK?publicId=$publicId;&image=$image;&folder=$folder;&api_key=$api_key;&api_secret=$api_secret;&cloud_name=$cloud_name;"
+      configuration: "cloudinary_config"
+    )
+}

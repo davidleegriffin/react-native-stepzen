@@ -1,10 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Platform, ScrollView, ImageBackground } from 'react-native';
 import Button from '../components/Button';
 import Gallery from '../components/Gallery';
 import { useQuery } from "@apollo/react-hooks"
 import { GET_IMAGES } from "../queries/content.queries.js"
 import IMAGE from '../assets/Starsinthesky.jpeg';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as ImagePicker from 'expo-image-picker';
+import Upload from './Upload';
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home({ signOut }) {
+export default function Home({ signOut }, {navigation}) {
 
   const {
     data,
@@ -47,6 +51,7 @@ if (error) return <Text>{error.message}</Text>
   return (
     <ImageBackground source={IMAGE} style={styles.bgImage} blurRadius={0}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
+        <Button onPress={() => navigation.navigate('Upload')}>Upload</Button>
         <Gallery props={pics}/>
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>

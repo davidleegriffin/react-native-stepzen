@@ -8,7 +8,7 @@ import { GET_IMAGES } from "../queries/content.queries";
 export default function TabOneScreen() {
 	const { data, error, loading } = useQuery(GET_IMAGES, {});
 
-	console.log("data", data);
+	// console.log("data", data);
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab One Hot dave</Text>

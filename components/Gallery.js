@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {  StyleSheet, Image } from 'react-native';
+import Upload from './Upload';
 
 function Gallery({props}) {
+    const [localImage, setLocalImage] = useState();
+
+    console.log('props', localImage);
     
-    console.log('props', props)
     const styles = StyleSheet.create ({
         image: {
             flex: 1,

@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState }  from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 
-function Upload() {
+function Upload(props) {
+    const styles = StyleSheet.create ({
+        container: {
+            flex: 1,
+        },
+        message: {
+            flex: 1,
+        },
+    });
+
+    const [localImage, setLocalImage] = useState();
+
+    console.log('propsGallery', props.localImage);
+
     return (
-        <h1>UPLOAD</h1>
+        <View style={styles.container}>
+            <Text>UPLOAD</Text>
+        </View>
     )
 }
 

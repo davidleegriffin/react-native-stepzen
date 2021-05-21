@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Platform, ScrollView, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Platform, ScrollView, ImageBackground, Image } from 'react-native';
 import Button from '../components/Button';
 import Gallery from '../components/Gallery';
-import { useQuery } from "@apollo/react-hooks"
-import { GET_IMAGES } from "../queries/content.queries.js"
+import { useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
+import { GET_IMAGES } from "../queries/content.queries.js";
+import { CREATE_IMAGE } from '../queries/content.queries.js';
 import IMAGE from '../assets/Starsinthesky.jpeg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ImagePicker from 'expo-image-picker';
-import Upload from './Upload';
+import Upload from '../components/Upload';
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -32,18 +34,47 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home({ signOut }, {navigation}) {
+export default function Home({ signOut }) {
 
+  const [localImage, setLocalImage] = useState();
+
+  
   const {
     data,
     loading,
     error
-  } = useQuery(GET_IMAGES)
+  } = useQuery(GET_IMAGES);
+  
+  // const {imageData} = useMutation(CREATE_IMAGE);
 
 const pics = data?.cloudinaryImages
-pics?.map((pic) => {
-  // console.log('datastuff', pic.url);
-});
+
+useEffect(() => {
+  (async () => {
+    if (Platform.OS !== 'web') {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  })();
+}, []);
+
+const pickImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.All,
+    allowsEditing: true,
+    aspect: [4, 3],
+    quality: 1,
+  });
+
+  // console.log(result);
+
+  if (!result.cancelled) {
+    setLocalImage(result.uri);
+  }
+};
+console.log('local-image', localImage);
 
 if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
@@ -51,8 +82,12 @@ if (error) return <Text>{error.message}</Text>
   return (
     <ImageBackground source={IMAGE} style={styles.bgImage} blurRadius={0}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Button onPress={() => navigation.navigate('Upload')}>Upload</Button>
-        <Gallery props={pics}/>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Button onPress={pickImage}>Select Image</Button>
+          {localImage && <Image source={{ uri: localImage }} style={{ width: 200, height: 200 }} />}
+        </View>
+        <Upload localImage={localImage} />
+        <Gallery props={pics} />
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>
     </ImageBackground>

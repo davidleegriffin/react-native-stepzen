@@ -3,9 +3,7 @@ import { View, Text, StyleSheet, Platform, ScrollView, ImageBackground, Image } 
 import Button from '../components/Button';
 import Gallery from '../components/Gallery';
 import { useQuery } from "@apollo/react-hooks";
-import { useMutation } from "@apollo/client";
 import { GET_IMAGES } from "../queries/content.queries.js";
-import { CREATE_IMAGE } from '../queries/content.queries.js';
 import IMAGE from '../assets/Starsinthesky.jpeg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -74,7 +72,7 @@ const pickImage = async () => {
     setLocalImage(result.uri);
   }
 };
-console.log('local-image', localImage);
+// console.log('local-image', localImage);
 
 if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
@@ -85,8 +83,8 @@ if (error) return <Text>{error.message}</Text>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Button onPress={pickImage}>Select Image</Button>
           {localImage && <Image source={{ uri: localImage }} style={{ width: 200, height: 200 }} />}
+          <Upload localImage={localImage} />
         </View>
-        <Upload localImage={localImage} />
         <Gallery props={pics} />
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>

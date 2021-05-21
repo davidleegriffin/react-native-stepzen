@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
-    
+    width: 125,
   },
   textStyle: {
+    textAlign: 'center',
     fontSize: 18,
     color: 'white',
   },

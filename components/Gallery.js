@@ -5,7 +5,7 @@ import Upload from './Upload';
 function Gallery({props}) {
     const [localImage, setLocalImage] = useState();
 
-    console.log('props', localImage);
+    // console.log('props', localImage);
     
     const styles = StyleSheet.create ({
         image: {

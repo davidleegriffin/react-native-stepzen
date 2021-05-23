@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home({ signOut }) {
+function Home({ signOut }) {
 
   const [localImage, setLocalImage] = useState();
 
@@ -59,20 +59,24 @@ useEffect(() => {
 }, []);
 
 const pickImage = async () => {
-  let result = await ImagePicker.launchImageLibraryAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.All,
-    allowsEditing: true,
-    aspect: [4, 3],
-    quality: 1,
-  });
+  try {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
-  // console.log(result);
+    console.log(result);
 
-  if (!result.cancelled) {
-    setLocalImage(result.uri);
+    if (!result.cancelled) {
+      setLocalImage(result.uri);
+    } 
+  } catch (error) {
+    showImageUploadError();
   }
 };
-// console.log('local-image', localImage);
+console.log('local-image', localImage);
 
 if (loading) return <Text>Almost there...</Text>
 if (error) return <Text>{error.message}</Text>
@@ -83,8 +87,8 @@ if (error) return <Text>{error.message}</Text>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Button onPress={pickImage}>Select Image</Button>
           {localImage && <Image source={{ uri: localImage }} style={{ width: 200, height: 200 }} />}
-          <Upload localImage={localImage} />
         </View>
+        <Upload props={localImage} />
         <Gallery props={pics} />
         <Button onPress={() => signOut()}>Sign Out</Button>
       </ScrollView>
@@ -92,4 +96,4 @@ if (error) return <Text>{error.message}</Text>
   )
 }
 
-
+export default Home;

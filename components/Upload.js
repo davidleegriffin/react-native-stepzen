@@ -5,8 +5,9 @@ import { CREATE_IMAGE } from '../queries/content.queries.js';
 import Button from './Button';
 
 
-function Upload(props) {
+export default function Upload(props) {
    
+    const uriData = props.localImage;
     const [Upload, {data}] = useMutation(CREATE_IMAGE)
 
     const styles = StyleSheet.create ({
@@ -21,14 +22,13 @@ function Upload(props) {
         },
     });
 
-    console.log('propsUpload', props.localImage);
+    console.log('propsUpload', uriData);
 
     return (
         <View style={styles.container}>
             <Text style={styles.message}>UPLOAD</Text>
-            <Button>Upload</Button>
+            <Button onPress={ Upload({ variables:{image: "https://picsum.photos/200/300", folder: 'upload', publicId: 'testName2'}})}>Upload</Button>
         </View>
     )
 }
 
-export default Upload;

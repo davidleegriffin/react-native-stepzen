@@ -27,7 +27,6 @@ export const GET_IMAGES = gql`
 export const CREATE_IMAGE = gql`
 	mutation createImage($image: String!, $folder: String!, $publicId: String!) {
 		createImage(image: $image, folder: $folder, publicId: $publicId) {
-			url
 			assetId
 			bytes
 			format

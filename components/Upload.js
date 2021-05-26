@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { useMutation } from "@apollo/client";
 import { CREATE_IMAGE } from '../queries/content.queries.js';
 import Button from './Button';
 
-
 export default function Upload(props) {
-   
-    const uriData = props.localImage;
+    const [image, setImage] = useState();
+    const uriData = props.props;
     const [Upload, {data}] = useMutation(CREATE_IMAGE)
 
     const styles = StyleSheet.create ({
@@ -21,13 +20,14 @@ export default function Upload(props) {
             textAlign: 'center',
         },
     });
-
+    if(props.props) {
     console.log('propsUpload', uriData);
+    }
 
     return (
         <View style={styles.container}>
             <Text style={styles.message}>UPLOAD</Text>
-            <Button onPress={ Upload({ variables:{image: "https://picsum.photos/200/300", folder: 'upload', publicId: 'testName2'}})}>Upload</Button>
+            <Button onPress={() => Upload({ variables: {image: `${uriData}`, folder: 'upload', publicId: 'testName3'}})}>Upload</Button>
         </View>
     )
 }
